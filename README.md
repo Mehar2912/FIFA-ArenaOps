@@ -62,16 +62,6 @@ The solution leverages Google's **Gemini AI** (`gemini-2.5-flash`) to transform 
 
 ---
 
-## 🖼️ Screenshots
-
-> Open `index.html` in your browser to see the full interactive dashboard featuring:
-> - Dark cyberpunk-themed command interface with glassmorphism cards
-> - Interactive SVG stadium map with heatmap/evacuation overlays
-> - Real-time AI incident analysis console
-> - Live metrics panels with animated sparklines and charts
-
----
-
 ## 🚀 Setup & Execution
 
 **Zero dependencies. Zero build steps. Just open and go.**
