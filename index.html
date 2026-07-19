@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIFA World Cup 2026 - ArenaOps Command Center</title>
+  <!-- Google Fonts for premium typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <!-- Background overlay details for cyberpunk matrix style -->
+  <div class="grid-overlay"></div>
+  <div class="ambient-glow"></div>
+
+  <!-- Dashboard Container -->
+  <div class="dashboard">
+    
+    <!-- HEADER -->
+    <header class="header card">
+      <div class="logo-area">
+        <div class="fwc-logo-badge">FIFA 26</div>
+        <div class="title-details">
+          <h1>ArenaOps Command Center</h1>
+          <p class="subtitle">MetLife Stadium • Operations Hub • Live Dashboard</p>
+        </div>
+      </div>
+      
+      <!-- Live Status Metrics in Header -->
+      <div class="header-status-panel">
+        <div class="header-metric">
+          <span class="metric-label">MATCH STATUS</span>
+          <span class="metric-value status-live-match pulsing-text">LIVE • SECOND HALF</span>
+        </div>
+        <div class="header-metric">
+          <span class="metric-label">SAFETY INDEX</span>
+          <span class="metric-value text-emerald" id="header-safety-index">98%</span>
+        </div>
+        <div class="header-metric">
+          <span class="metric-label">ACTIVE INCIDENTS</span>
+          <span class="metric-value text-red" id="header-incidents-count">1 Active</span>
+        </div>
+        <div class="header-metric">
+          <span class="metric-label">LOCAL TIME</span>
+          <span class="metric-value text-blue" id="live-clock">18:58:52</span>
+        </div>
+      </div>
+
+      <!-- Action Panel Buttons -->
+      <div class="header-actions">
+        <button id="btn-open-settings" class="btn btn-secondary btn-icon" title="Configure AI Settings">
+          <span>⚙️</span>
+          <span class="btn-text">AI Setup</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- MAIN BODY GRID -->
+    <main class="main-grid">
+      
+      <!-- LEFT COLUMN: OPERATIONAL METRICS & SIMULATION -->
+      <section class="col-left flex-col gap">
+        
+        <!-- Live Metrics Card -->
+        <article class="card flex-col gap-sm">
+          <h2 class="card-title">Live Facility Metrics</h2>
+          
+          <div class="metrics-grid">
+            <div class="mini-metric-card">
+              <span class="mini-label">Total Occupancy</span>
+              <span class="mini-val" id="val-occupancy">78,420</span>
+              <span class="mini-sub text-muted">Capacity: 82,500</span>
+              <div class="progress-bar-container">
+                <div class="progress-bar bg-blue" style="width: 95%"></div>
+              </div>
+            </div>
+            
+            <div class="mini-metric-card">
+              <span class="mini-label">Avg. Ingress Flow</span>
+              <span class="mini-val" id="val-ingress">142<span class="unit">/min</span></span>
+              <span class="mini-sub text-emerald">↓ Standard Peak</span>
+              <div class="sparkline-placeholder" id="sparkline-ingress">
+                <!-- Inline SVG Sparkline -->
+                <svg viewBox="0 0 100 20" width="100%" height="20">
+                  <path d="M 0,15 Q 15,5 30,12 T 60,6 T 90,14 T 100,10" fill="none" stroke="#0ea5e9" stroke-width="1.5"></path>
+                </svg>
+              </div>
+            </div>
+
+            <div class="mini-metric-card">
+              <span class="mini-label">Gate Entry Delay</span>
+              <span class="mini-val" id="val-gate-delay">12<span class="unit">m</span></span>
+              <span class="mini-sub text-amber" id="sub-gate-delay">Gate C Slowest</span>
+              <div class="progress-bar-container">
+                <div class="progress-bar bg-amber" id="progress-gate-delay" style="width: 40%"></div>
+              </div>
+            </div>
+
+            <div class="mini-metric-card">
+              <span class="mini-label">Concessions Delay</span>
+              <span class="mini-val" id="val-food-delay">8<span class="unit">m</span></span>
+              <span class="mini-sub text-emerald">Normal Queues</span>
+              <div class="progress-bar-container">
+                <div class="progress-bar bg-emerald" style="width: 25%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="volunteer-status">
+            <div class="vol-header">
+              <span>VOLUNTEER DISPOSITION</span>
+              <span class="text-blue" id="vol-counts">150 Active / 12 idle</span>
+            </div>
+            <div class="volunteer-distribution">
+              <div class="vol-segment bg-emerald" style="width: 60%;" title="60% In-Stand Support">60% Stand</div>
+              <div class="vol-segment bg-blue" style="width: 25%;" title="25% Gate Welcomers">25% Gate</div>
+              <div class="vol-segment bg-amber" style="width: 15%;" title="15% Transit / Crowd control">15% Crowd</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Operational Scenario Simulator -->
+        <article class="card flex-col gap-sm">
+          <h2 class="card-title">Scenario Simulation Panel</h2>
+          <p class="card-desc">Trigger pre-configured World Cup incidents to test the Command Center's response capability and AI-enabled decision suggestions.</p>
+          
+          <div class="simulation-actions-list">
+            <button class="btn btn-simulate" data-scenario="rain">
+              <span class="sim-icon">🌧️</span>
+              <div class="sim-details">
+                <span class="sim-title">Sudden Thunderstorm</span>
+                <span class="sim-desc">Shuts plazas, delays transit, fills concourses.</span>
+              </div>
+            </button>
+            
+            <button class="btn btn-simulate" data-scenario="gate-failure">
+              <span class="sim-icon">🔌</span>
+              <div class="sim-details">
+                <span class="sim-title">Gate C Reader Outage</span>
+                <span class="sim-desc">IT network disconnects, queues spike.</span>
+              </div>
+            </button>
+            
+            <button class="btn btn-simulate" data-scenario="vip-arrival">
+              <span class="sim-icon">🚗</span>
+              <div class="sim-details">
+                <span class="sim-title">VIP Motorcade Route</span>
+                <span class="sim-desc">Road blocks on South, redirects shuttles.</span>
+              </div>
+            </button>
+            
+            <button class="btn btn-simulate" data-scenario="medical-heat">
+              <span class="sim-icon">🏥</span>
+              <div class="sim-details">
+                <span class="sim-title">Medical Sector 112</span>
+                <span class="sim-desc">Suspected heat collapse, needs responder routing.</span>
+              </div>
+            </button>
+          </div>
+          
+          <div class="simulator-custom">
+            <label for="custom-sim-text">Trigger Custom Incident Report</label>
+            <div class="custom-sim-input-row">
+              <input type="text" id="custom-sim-text" placeholder="e.g., A fight broke out between rival fans in Section 204..." />
+              <button id="btn-custom-simulate" class="btn btn-primary">Trigger</button>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- CENTER COLUMN: INTERACTIVE STADIUM MAP -->
+      <section class="col-center flex-col gap">
+        
+        <!-- Interactive Map Canvas Card -->
+        <article class="card flex-col flex-grow map-card">
+          <div class="map-header">
+            <div class="map-title-row">
+              <h2 class="card-title">Interactive Arena & Transit Map</h2>
+              <span class="map-badge" id="active-zone-indicator">HQ View (Global)</span>
+            </div>
+            
+            <!-- Map View Mode Controls -->
+            <div class="map-controls">
+              <span class="control-label">View Overlays:</span>
+              <div class="btn-group">
+                <button class="btn btn-toggle active" id="map-mode-normal">Standard</button>
+                <button class="btn btn-toggle" id="map-mode-heatmap">Heatmap</button>
+                <button class="btn btn-toggle" id="map-mode-evacuation">Evacuation</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- THE SVG MAP CANVAS CONTAINER -->
+          <div class="stadium-svg-container">
+            <svg id="stadium-svg" viewBox="0 0 600 600" width="100%" height="100%">
+              <!-- Definitions for Gradients, Glows, and Patterns -->
+              <defs>
+                <!-- Neon glow filters -->
+                <filter id="glow-red" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="6" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+                <filter id="glow-blue" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="4" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+                <!-- Radial Gradients for Heatmaps -->
+                <radialGradient id="grad-heatmap-high" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#ef4444" stop-opacity="0.8" />
+                  <stop offset="50%" stop-color="#ef4444" stop-opacity="0.4" />
+                  <stop offset="100%" stop-color="#ef4444" stop-opacity="0" />
+                </radialGradient>
+                <radialGradient id="grad-heatmap-med" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.8" />
+                  <stop offset="60%" stop-color="#f59e0b" stop-opacity="0.3" />
+                  <stop offset="100%" stop-color="#f59e0b" stop-opacity="0" />
+                </radialGradient>
+                <radialGradient id="grad-pitch" cx="50%" cy="50%" r="70%">
+                  <stop offset="0%" stop-color="#064e3b" />
+                  <stop offset="100%" stop-color="#022c22" />
+                </radialGradient>
+              </defs>
+
+              <!-- OUTER PERIMETER: Transit and Parking Hubs -->
+              <g id="transit-layer">
+                <!-- North Parking Plaza -->
+                <rect class="map-transit-node" id="transit-north-parking" x="180" y="20" width="240" height="45" rx="6" />
+                <text x="300" y="47" class="svg-text">North Transit & Parking (Bus Loop 1)</text>
+
+                <!-- South Transit Hub -->
+                <rect class="map-transit-node" id="transit-south-hub" x="180" y="535" width="240" height="45" rx="6" />
+                <text x="300" y="562" class="svg-text">South Multi-Modal Hub (Bus Loop 2)</text>
+
+                <!-- West Express Rail Link -->
+                <rect class="map-transit-node" id="transit-west-rail" x="15" y="180" width="45" height="240" rx="6" />
+                <text x="38" y="300" class="svg-text vertical-text">West Rail Station</text>
+
+                <!-- East General Parking -->
+                <rect class="map-transit-node" id="transit-east-parking" x="540" y="180" width="45" height="240" rx="6" />
+                <text x="562" y="300" class="svg-text vertical-text">East Fan Parking Zone</text>
+              </g>
+
+              <!-- CONNECTIVITY ROADS / EVACUATION PATHWAYS (Visible in Evacuation view mode) -->
+              <g id="evacuation-routes" class="hidden-layer">
+                <!-- Route paths from pitch outwards to parking -->
+                <line x1="300" y1="180" x2="300" y2="70" class="evac-route-line" />
+                <line x1="300" y1="420" x2="300" y2="530" class="evac-route-line" />
+                <line x1="180" y1="300" x2="60" y2="300" class="evac-route-line" />
+                <line x1="420" y1="300" x2="540" y2="300" class="evac-route-line" />
+                
+                <!-- Evacuation Flow Direction Arrows (represented by markers/dash arrays) -->
+                <path d="M 300 220 L 300 80 M 300 380 L 300 520 M 220 300 L 70 300 M 380 300 L 530 300" class="evac-route-animated" />
+              </g>
+
+              <!-- STADIUM OUTLINE RING (Concourse) -->
+              <circle cx="300" cy="300" r="225" class="stadium-outer-ring" />
+
+              <!-- HEATMAP INDICATORS (Overlay, controlled dynamically) -->
+              <g id="heatmap-layer" class="hidden-layer">
+                <!-- Dynamic heat spots centered on gates and sectors -->
+                <circle cx="300" cy="100" r="70" fill="url(#grad-heatmap-med)" />
+                <circle cx="160" cy="300" r="50" fill="url(#grad-heatmap-med)" />
+                <circle cx="440" cy="300" r="90" fill="url(#grad-heatmap-high)" id="heatmap-gate-c" />
+                <circle cx="300" cy="460" r="60" fill="url(#grad-heatmap-med)" />
+              </g>
+
+              <!-- CONCOURSE AMENITIES & FACILITIES -->
+              <g id="facilities-layer">
+                <!-- Accessibility Ramps -->
+                <rect class="map-facility-node" id="facility-ramp-east" x="480" y="220" width="12" height="30" rx="3" title="Wheelchair Ramp" />
+                <rect class="map-facility-node" id="facility-ramp-west" x="108" y="350" width="12" height="30" rx="3" title="Wheelchair Ramp" />
+                
+                <!-- Medical Centers -->
+                <circle class="map-facility-node medical-first-aid" id="facility-aid-north" cx="300" cy="90" r="10" title="North Stand First Aid station" />
+                <circle class="map-facility-node medical-first-aid" id="facility-aid-south" cx="300" cy="510" r="10" title="South Stand First Aid station" />
+                
+                <!-- Sensory & Accessibility Rooms -->
+                <rect class="map-facility-node accessibility-room" id="facility-sensory-west" x="110" y="240" width="14" height="14" rx="2" title="Sensory Calm Room" />
+                
+                <!-- Concession / Restroom hubs -->
+                <circle class="map-facility-node concession-stand" id="facility-food-northeast" cx="420" cy="180" r="9" title="Concession Hub NE" />
+                <circle class="map-facility-node concession-stand" id="facility-food-northwest" cx="180" cy="180" r="9" title="Concession Hub NW" />
+                <circle class="map-facility-node concession-stand" id="facility-food-southeast" cx="420" cy="420" r="9" title="Concession Hub SE" />
+                <circle class="map-facility-node concession-stand" id="facility-food-southwest" cx="180" cy="420" r="9" title="Concession Hub SW" />
+              </g>
+
+              <!-- STADIUM SECTORS / STANDS -->
+              <g id="sectors-layer">
+                <!-- North Stand Segment -->
+                <path d="M 180 180 A 170 170 0 0 1 420 180 L 390 210 A 130 130 0 0 0 210 210 Z" 
+                      class="stadium-sector-block" id="sector-north" data-occupancy="95%" data-delay="10 min" />
+                
+                <!-- South Stand Segment -->
+                <path d="M 180 420 A 170 170 0 0 0 420 420 L 390 390 A 130 130 0 0 1 210 390 Z" 
+                      class="stadium-sector-block" id="sector-south" data-occupancy="98%" data-delay="15 min" />
+                
+                <!-- West Stand Segment -->
+                <path d="M 180 180 A 170 170 0 0 0 180 420 L 210 390 A 130 130 0 0 1 210 210 Z" 
+                      class="stadium-sector-block" id="sector-west" data-occupancy="92%" data-delay="8 min" />
+                
+                <!-- East Stand Segment -->
+                <path d="M 420 180 A 170 170 0 0 1 420 420 L 390 390 A 130 130 0 0 0 390 210 Z" 
+                      class="stadium-sector-block" id="sector-east" data-occupancy="94%" data-delay="11 min" />
+
+                <!-- VIP Executive Suites Ring -->
+                <circle cx="300" cy="300" r="105" class="stadium-vip-ring" />
+              </g>
+
+              <!-- FIELD / PITCH IN CENTER -->
+              <g id="pitch-layer">
+                <rect x="235" y="210" width="130" height="180" rx="3" fill="url(#grad-pitch)" stroke="#ffffff" stroke-opacity="0.3" stroke-width="2" />
+                <!-- Field markings -->
+                <circle cx="300" cy="300" r="25" fill="none" stroke="#ffffff" stroke-opacity="0.3" stroke-width="1.5" />
+                <line x1="235" y1="300" x2="365" y2="300" stroke="#ffffff" stroke-opacity="0.3" stroke-width="1.5" />
+              </g>
+
+              <!-- ENTRY GATES (Outer Perimeter Hubs) -->
+              <g id="gates-layer">
+                <!-- Gate A (North) -->
+                <circle class="map-gate-node gate-ok" id="gate-a" cx="300" cy="78" r="12" data-name="Gate A (North)" />
+                <text x="300" y="82" class="gate-text-lbl">A</text>
+                
+                <!-- Gate B (West) -->
+                <circle class="map-gate-node gate-ok" id="gate-b" cx="78" cy="300" r="12" data-name="Gate B (West)" />
+                <text x="78" y="304" class="gate-text-lbl">B</text>
+
+                <!-- Gate C (East) -->
+                <circle class="map-gate-node gate-warning" id="gate-c" cx="522" cy="300" r="12" data-name="Gate C (East)" />
+                <text x="522" y="304" class="gate-text-lbl">C</text>
+
+                <!-- Gate D (South) -->
+                <circle class="map-gate-node gate-ok" id="gate-d" cx="300" cy="522" r="12" data-name="Gate D (South)" />
+                <text x="300" y="526" class="gate-text-lbl">D</text>
+              </g>
+
+              <!-- INCIDENT MARKER PIN PLACEMENTS (Dynamically loaded, showing example pulsing pin) -->
+              <g id="incident-pins-layer">
+                <!-- Pulse circle for Gate C (Initial bottleneck) -->
+                <circle id="pin-gate-c-glow" class="incident-pulsing-glow hidden" cx="522" cy="300" r="22" fill="#ef4444" fill-opacity="0.4" />
+                <circle id="pin-gate-c" class="incident-pin-marker hidden" cx="522" cy="300" r="7" data-target="gate-c" />
+
+                <!-- Pulse circle for Sector 112/East Stand (Initial Medical example) -->
+                <circle id="pin-sector-east-glow" class="incident-pulsing-glow hidden" cx="420" cy="300" r="22" fill="#f59e0b" fill-opacity="0.4" />
+                <circle id="pin-sector-east" class="incident-pin-marker hidden" cx="420" cy="300" r="7" data-target="sector-east" />
+              </g>
+            </svg>
+          </div>
+
+          <!-- Map Info / Tooltip Panel -->
+          <div class="map-footer" id="map-quick-inspector">
+            <span class="info-icon">💡</span>
+            <div id="inspector-default-msg">Click on any Gate, Stand Sector, or Transit Station to inspect queue metrics and trigger custom alerts.</div>
+            <div id="inspector-data-panel" class="hidden-layer">
+              <span class="inspector-title" id="inspector-entity-name">Gate C (East Entry)</span>
+              <span class="inspector-item">Occupancy: <strong id="inspector-occupancy">N/A</strong></span>
+              <span class="inspector-item">Status Rating: <strong id="inspector-status">Normal</strong></span>
+              <span class="inspector-item">Avg Delay: <strong id="inspector-delay">N/A</strong></span>
+              <button class="btn btn-xs btn-primary" id="btn-inspect-report" style="margin-left:auto;">Generate Report</button>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- RIGHT COLUMN: GENAI CO-PILOT WORKSPACE -->
+      <section class="col-right flex-col gap">
+        
+        <!-- Live Operations Log Card -->
+        <article class="card flex-col gap-sm flex-grow-2 log-card">
+          <div class="log-title-row">
+            <h2 class="card-title">Live Incident Log</h2>
+            <button class="btn btn-xs btn-secondary" id="btn-clear-log">Reset System</button>
+          </div>
+          
+          <div class="incident-list" id="active-incidents-feed">
+            <!-- Incidents will be populated here dynamically -->
+          </div>
+        </article>
+
+        <!-- AI Co-Pilot Console -->
+        <article class="card flex-col gap-sm flex-grow-3 ai-console-card">
+          <div class="console-title-row">
+            <h2 class="card-title">
+              <span class="ai-sparkle">✨</span> GenAI Decision Co-Pilot
+            </h2>
+            <span id="ai-engine-status" class="engine-badge bg-blue">Local Model</span>
+          </div>
+
+          <!-- Output Panel of AI Suggestion -->
+          <div class="ai-output-container" id="ai-suggestion-panel">
+            <div class="ai-empty-state">
+              <div class="copilot-logo-glow">🤖</div>
+              <h3>Co-Pilot Idle</h3>
+              <p>Select an active incident from the log above or trigger a scenario to receive real-time action plans, volunteer dispatch instructions, and translations.</p>
+            </div>
+            
+            <div class="ai-response-content hidden-layer" id="ai-response-view">
+              <!-- Header / Severity -->
+              <div class="ai-response-header">
+                <span class="severity-tag" id="ai-res-severity">High</span>
+                <span class="category-lbl" id="ai-res-category">Crowd Control</span>
+              </div>
+              
+              <!-- AI Executive Summary -->
+              <div class="ai-section">
+                <h4>EXECUTIVE SUMMARY</h4>
+                <p id="ai-res-summary">Loading executive summary...</p>
+              </div>
+
+              <!-- Action Plan Checklist -->
+              <div class="ai-section">
+                <h4>IMMEDIATE ACTION PLAN</h4>
+                <ul class="action-checklist" id="ai-res-actions">
+                  <!-- Steps injected here -->
+                </ul>
+              </div>
+
+              <!-- Volunteer Allocation -->
+              <div class="ai-section">
+                <h4>VOLUNTEER DEPLOYMENT DECREE</h4>
+                <p class="volunteer-note" id="ai-res-volunteers">Loading volunteer orders...</p>
+              </div>
+
+              <!-- Multilingual PA Broadcast Announcements -->
+              <div class="ai-section">
+                <h4>PA BROADCAST ANNOUNCEMENTS</h4>
+                <div class="announcement-tabs">
+                  <button class="tab-btn active" data-lang="en">English (EN)</button>
+                  <button class="tab-btn" data-lang="es">Español (ES)</button>
+                  <button class="tab-btn" data-lang="fr">Français (FR)</button>
+                </div>
+                <div class="announcement-box">
+                  <p id="ai-res-pa-text">Select a language to preview the public announcement...</p>
+                </div>
+              </div>
+
+              <!-- Execute actions panel -->
+              <div class="ai-execution-actions">
+                <button class="btn btn-secondary" id="btn-broadcast-pa">
+                  🔊 Broadcast Announcement
+                </button>
+                <button class="btn btn-primary" id="btn-deploy-volunteers">
+                  👥 Deploy volunteer squads
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <!-- SETTINGS MODAL DIALOG (AI Setup) -->
+  <div class="modal-overlay hidden-layer" id="settings-modal">
+    <div class="modal card">
+      <div class="modal-header">
+        <h3>⚙️ AI Engine Configuration</h3>
+        <button class="btn-close-modal" id="btn-close-settings">×</button>
+      </div>
+      
+      <div class="modal-body flex-col gap">
+        <!-- API Mode Selector -->
+        <div class="form-group">
+          <label>Intelligence Provider</label>
+          <div class="toggle-switch-row">
+            <span class="toggle-lbl">Local Simulation Engine (Heuristic)</span>
+            <label class="switch">
+              <input type="checkbox" id="toggle-live-mode">
+              <span class="slider round"></span>
+            </label>
+            <span class="toggle-lbl">Live Gemini API (Cloud)</span>
+          </div>
+          <p class="form-help">Live Gemini mode communicates directly with Google's Gemini models in real-time from your browser.</p>
+        </div>
+
+        <!-- Gemini API Key Input (conditional visibility) -->
+        <div class="form-group" id="group-api-key">
+          <label for="input-api-key">Gemini Developer API Key</label>
+          <input type="password" id="input-api-key" placeholder="Enter your AIzaSy... API Key" />
+          <p class="form-help">Your API key is stored locally in your browser's memory and is sent securely directly to the Google Generative Language endpoint.</p>
+        </div>
+
+        <!-- System Prompt Tuning -->
+        <div class="form-group">
+          <label for="input-system-prompt">System Prompt Tuning</label>
+          <textarea id="input-system-prompt" rows="7" placeholder="Define how the AI agent responds to stadium operations..."></textarea>
+          <p class="form-help">Modify the instructions that govern the Co-Pilot's output structure, emergency protocols, and response language guidelines.</p>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="btn-reset-prompt">Reset Prompt</button>
+        <button class="btn btn-primary" id="btn-save-settings">Save and Apply</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load Scripts -->
+  <script src="ai-engine.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
